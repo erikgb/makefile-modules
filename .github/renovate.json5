@@ -28,6 +28,9 @@
   packageRules: [
     {
       groupName: 'Tools',
+      matchFileNames: [
+        'modules/tools**/**'
+      ],
       matchPackageNames: [
         '*',
       ]
