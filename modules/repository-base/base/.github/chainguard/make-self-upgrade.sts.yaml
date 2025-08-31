@@ -4,3 +4,4 @@ subject_pattern: repo:{{REPLACE:GH-REPOSITORY}}:ref:refs/heads/(main|master)
 permissions:
   contents: write
   pull_requests: write
+  workflows: write
