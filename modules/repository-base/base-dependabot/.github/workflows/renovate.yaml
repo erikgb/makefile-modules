@@ -3,10 +3,6 @@
 
 name: Renovate
 on:
-  push:
-    branches:
-      - main
-      - master
   workflow_dispatch: {}
   schedule:
     - cron: '0/30 * * * *'
