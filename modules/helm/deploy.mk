@@ -50,5 +50,6 @@ uninstall: | $(NEEDS_HELM)
 template: $(helm_chart_archive) | $(NEEDS_HELM)
 	@$(HELM) template $(deploy_name) $(helm_chart_archive) \
 		--create-namespace \
+		--kube-version 1.29.0 \
 		$(INSTALL_OPTIONS) \
 		--namespace $(deploy_namespace)

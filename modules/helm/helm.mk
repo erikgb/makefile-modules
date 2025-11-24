@@ -159,7 +159,7 @@ endif
 ##
 ## @category [shared] Generate/ Verify
 verify-pod-security-standards: $(helm_chart_archive) $(bin_dir)/scratch/kyverno/pod-security-policy.yaml | $(NEEDS_KYVERNO) $(NEEDS_HELM)
-	@$(HELM) template $(helm_chart_archive) $(INSTALL_OPTIONS) \
+	@$(HELM) template $(helm_chart_archive) --kube-version 1.29.0 $(INSTALL_OPTIONS) \
 	| $(KYVERNO) apply $(bin_dir)/scratch/kyverno/pod-security-policy.yaml \
 		$(kyverno_apply_extra_args) \
 		--resource - \
@@ -179,7 +179,7 @@ shared_verify_targets_dirty += verify-helm-lint
 ## Verify that the Helm chart passes a strict check using kubeconform
 ## @category [shared] Generate/ Verify
 verify-helm-kubeconform: $(helm_chart_archive) | $(NEEDS_KUBECONFORM)
-	@$(HELM) template $(helm_chart_archive) $(INSTALL_OPTIONS) \
+	@$(HELM) template $(helm_chart_archive) --kube-version 1.29.0 $(INSTALL_OPTIONS) \
 	| $(KUBECONFORM) \
 		-schema-location default \
 		-schema-location "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/{{.NormalizedKubernetesVersion}}/{{.ResourceKind}}.json" \
